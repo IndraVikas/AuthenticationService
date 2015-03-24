@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quick Tour: ${name}</title>
+</head>
+<body>
+<h1>SignIn</h1>
+<span tal:replace="message"/>
+
+<form action="" method="post">
+    <input type="hidden" name="_csrf" value="{{ request.csrf_token }}">
+
+    <div class="form-group">
+        <label for="first_name">FirstName:</label>
+        <input class="form-control" id="first_name" maxlength="254" name="first_name" type="text" value="{{ first_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="last_name">LastName:</label>
+        <input class="form-control" id="last_name" maxlength="254" name="last_name" type="text" value="{{ last_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email_id">EmailId:</label>
+        <input class="form-control" id="email_id" maxlength="254" name="email_id" type="text" value="{{ email_id }}" required>
+        {% if email_id_already_registered %}
+        <span class="help-block">Email id already registered.</span>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" id="password" maxlength="254" name="password" type="password" value="{{ password }}" required>
+    </div>
+    <div class="form-group">
+        <label for="user_category">UserCategory:</label>
+        <input class="form-control" id="user_category" maxlength="254" name="user_category" type="text" value="{{ user_category }}" required>
+    </div>
+
+    <input type="submit" value="Sign In" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+</body>
+</html>

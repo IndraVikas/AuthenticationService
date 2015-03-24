@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quick Tour: ${name}</title>
+</head>
+<body>
+<h1>Login</h1>
+<span tal:replace="message"/>
+
+<form action="" method="post">
+    <input type="hidden" name="_csrf" value="{{ request.csrf_token}}">
+    {% if inactive_user %}
+    <div>
+        <p>
+            <span class="text-danger"><strong>Your user account is not active yet. Please contact your adminstrator.</strong></span>
+        </p>
+    </div>
+    {% endif %}
+    <div class="form-group {% if invalid_username %}has-error has-feedback{% endif %}">
+        <label for="email_id">Username:</label>
+        <input class="form-control" id="email_id" maxlength="254" name="email_id" type="text" value="{{ email_id }}" required>
+        {% if invalid_username %}
+        <span class="help-block">You submitted incorrect username.</span>
+        {% endif %}
+    </div>
+    <div class="form-group {% if invalid_password %}has-error has-feedback{% endif %}">
+        <label for="id_password">Password:</label>
+        <input class="form-control" id="id_password" name="password" type="password" required>
+        {% if invalid_password %}
+        <br>
+        <span class="help-block">You have submitted incorrect password.</span>
+        {% endif %}
+    </div>
+
+    <input type="submit" value="Log in" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+</body>
+</html>
